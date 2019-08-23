@@ -17,11 +17,16 @@ namespace Laboratorio_2_OOP_201902
 
         public List<Card.Card> Cards { get => cards; set => cards = value; }
 
-        public void AddCombatCard(CombatCard combatCard) { throw new NotImplementedException(); }
-        public void AddSpecialCard(SpecialCard specialCard) { throw new NotImplementedException(); }
-        public void DestroyCombatCard(int cardId) { throw new NotImplementedException(); }
-        public void DestroySpecialCard(int cardId) { throw new NotImplementedException(); }
-        public void Shuffle() { 
+        public void AddCard(CombatCard combatCard)
+        {
+            cards.Add(combatCard);
+        }
+        public void DestroyCard(int cardId)
+        {
+            cards.RemoveAt(cardId);       
+        }
+        public void Shuffle()
+        { 
             throw new NotImplementedException();
         }
     }
