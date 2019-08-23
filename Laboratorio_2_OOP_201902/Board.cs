@@ -23,8 +23,8 @@ namespace Laboratorio_2_OOP_201902
                 return this.playerCards;
             }
         }
-      
-       
+
+
         public List<SpecialCard> WeatherCards
         {
             get
@@ -45,7 +45,7 @@ namespace Laboratorio_2_OOP_201902
 
         //Metodos
 
-        public void AddCard(Card.Card card, int playerId = -1, string buffType= null)
+        public void AddCard(Card.Card card, int playerId = -1, string buffType = null)
         {
             if (card.GetType().Name == nameof(CombatCard))
             {
@@ -84,55 +84,55 @@ namespace Laboratorio_2_OOP_201902
                 }
 
             }
-        }
-        
+        }
+
+
         public void DestroyCards()
         {
+            List<Card.Card>[] captainCards = new List<Card.Card>[DEFAULT_NUMBER_OF_PLAYERS];
+            new List <Card.Card >(playerCards[0]["captain"]);
+            new List<Card.Card>(playerCards[1]["captain"]);
+        
+
             this.playerCards = new Dictionary<string, List<Card.Card>>[DEFAULT_NUMBER_OF_PLAYERS];
         }
         public void DestroyWeatherCards()
         {
             this.weatherCards = new List<SpecialCard>();
         }
-        public int[] GetMeleeAttackPoints()
+        public int[] GetAttackPoints()
         {
+
             //Debe sumar todos los puntos de ataque de las cartas melee y retornar los valores por jugador.
             int[] totalAttack = new int[] { 0, 0 };
             for (int i=0; i < 2; i++)
             {
-                foreach (CombatCard meleeCard in meleeCards[i])
+                if (playerCards[i].ContainsKey("melee"))
                 {
-                    totalAttack[i] += meleeCard.AttackPoints;
+                    foreach (CombatCard meleeCard in playerCards[i]["melee"])
+                    {
+                        totalAttack[i] += meleeCard.AttackPoints;
+                    }
+
                 }
+                else if (playerCards[i].ContainsKey("range"))
+                {
+                    foreach (CombatCard meleeCard in playerCards[i]["range"])
+                    {
+                        totalAttack[i] += meleeCard.AttackPoints;
+                    }
+                }
+                else if (playerCards[i].ContainsKey("longrange"))
+                {
+                    foreach (CombatCard meleeCard in playerCards[i]["longrange"])
+                    {
+                        totalAttack[i] += meleeCard.AttackPoints;
+                    }
+                }
+
             }
             return totalAttack;
             
-        }
-        public int[] GetRangeAttackPoints()
-        {
-            //Debe sumar todos los puntos de ataque de las cartas range y retornar los valores por jugador.
-            int[] totalAttack = new int[] { 0, 0 };
-            for (int i = 0; i < 2; i++)
-            {
-                foreach (CombatCard rangeCard in rangeCards[i])
-                {
-                    totalAttack[i] += rangeCard.AttackPoints;
-                }
-            }
-            return totalAttack;
-        }
-        public int[] GetLongRangeAttackPoints()
-        {
-            //Debe sumar todos los puntos de ataque de las cartas longRange y retornar los valores por jugador.
-            int[] totalAttack = new int[] { 0, 0 };
-            for (int i = 0; i < 2; i++)
-            {
-                foreach (CombatCard longRangeCard in longRangeCards[i])
-                {
-                    totalAttack[i] += longRangeCard.AttackPoints;
-                }
-            }
-            return totalAttack;
         }
     }
 }
