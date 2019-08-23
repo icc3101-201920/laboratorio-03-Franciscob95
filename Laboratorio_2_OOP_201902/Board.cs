@@ -92,9 +92,9 @@ namespace Laboratorio_2_OOP_201902
             List<Card.Card>[] captainCards = new List<Card.Card>[DEFAULT_NUMBER_OF_PLAYERS] { new List<Card.Card>(playerCards[0]["captain"]), new List<Card.Card>(playerCards[1]["captain"]) };
             this.playerCards = new Dictionary<string, List<Card.Card>>[DEFAULT_NUMBER_OF_PLAYERS];
 
-            foreach (SpecialCard Captain in captainCards)
+            foreach (List<Card.Card> captain in captainCards)
             {
-                this.playerCards[DEFAULT_NUMBER_OF_PLAYERS].Add("captain", Captain);
+                this.playerCards[DEFAULT_NUMBER_OF_PLAYERS].Add("captain", captain);
             }
         }
         public void DestroyWeatherCards()
